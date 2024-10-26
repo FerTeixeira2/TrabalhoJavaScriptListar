@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .titulo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+        }
+        .caixa {
+            border: 2px solid black;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+        .caixaBusca {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+        .caixaBuscarCheia {
+            display: flex;
+            width: 100%;
+            height: 49px;
+            align-items: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50; 
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2; 
+        }
+    </style>
+</head>
+<body>
+    <h1 class="titulo">Lista de todas as tarefas</h1>
+    <div class="caixa" style="width: 50%;">
+        <div class="caixaBuscarCheia">
+            <div class="caixaBusca">
+                <div>
+                    <input type="text" nome="buscar" id="buscar">
+                </div>
+                <div>
+                    <button id="botao" onclick="addPedido()">+ADD</button>
+                </div>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        let contador = 1;
+
+        function addPedido() {
+            var pedido = document.getElementById("buscar").value;
+            var tableAdd = `<tr> <td>${contador}</td> <td>${pedido}</td><td><button onclick="excluir(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16"><path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/></svg>Excluir</button></td> </tr>`;
+            var tbody = document.getElementById("tbody");
+            tbody.innerHTML += tableAdd; 
+            contador++;
+        }
+
+        function excluir(btn) {
+            const linha = btn.closest('tr');
+            linha.remove();
+        }
+    </script>
+</body>
+</html>
